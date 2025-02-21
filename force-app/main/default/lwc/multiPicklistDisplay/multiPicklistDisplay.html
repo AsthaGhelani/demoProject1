@@ -1,0 +1,52 @@
+<template>
+    <!-- <lightning-card title="Leads List"> -->
+
+
+
+        <div class="slds-p-around_medium">
+            <template if:true={leads}>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <!-- Iterate through the leads and display each in a card -->
+                    <template for:each={leads} for:item="lead">
+                        <div class="slds-col slds-size_1-of-3 slds-p-around_medium" key={lead.Id}>
+
+                            <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3">
+
+                                <div class="card-wrapper">
+
+                                    <lightning-card title={lead.Name}>
+                                        <div class="slds-p-around_small space1">
+                                            <template if:true={lead.LeadSourceValues}>
+                                                <h3>Lead Source:</h3>
+                                                <!-- Iterate through the multi-picklist values and display them as paragraphs -->
+                                                <template for:each={lead.LeadSourceValues} for:item="value">
+                                                    <p key={value}>{value}</p>
+                                                </template>
+                                            </template>
+                                            <template if:false={lead.LeadSourceValues}>
+                                                <p>No Lead Source available.</p>
+                                            </template>
+                                        </div>
+                                    </lightning-card>
+                                </div>
+                            </lightning-layout-item>
+
+
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">Error loading Leads: {error}</p>
+            </template>
+            <template if:false={leads}>
+                <p>No Leads found.</p>
+            </template>
+        </div>
+
+
+
+    <!-- </lightning-card> -->
+
+
+</template>

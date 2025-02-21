@@ -1,0 +1,352 @@
+<template>
+    <!-- Show loading spinner while data is being fetched -->
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <!-- Show error message if any -->
+    <template if:true={error}>
+        <div class="error">
+            <p>Error fetching data: {error.message}</p>
+        </div>
+    </template>
+   
+    <div class="heading">
+     <h1> <lightning-icon icon-name="custom:custom14" alternative-text="Faculty" title="Faculty" ></lightning-icon>
+        &nbsp;  
+            Faculty Information 
+        </h1>
+    </div>
+    <!-- Loop through colleges and display their faculty records -->
+    <template for:each={collegeData} for:item="college">
+        <div key={college.Id} class="card" data-id={college.Id} onclick={handleCardClick}>
+            <h2>{college.Name}</h2>
+
+            <!-- Faculty Table -->
+            <template if:true={college.facultyRecords}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={college.facultyRecords} for:item="faculty">
+                            <tr key={faculty.Id}>
+                                <td>{faculty.Name}</td>
+                                <td>{faculty.Position__c}</td>
+                                <td>{faculty.Email__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template if:false={college.facultyRecords}>
+                <p>No faculty data available for this college.</p>
+            </template>
+        </div>
+    </template>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+    <lightning-card class="card">
+        <template for:each={colleges} for:item="college">
+            <div key={college.Id} class="college-card" data-id={college.Id}>
+                <div class="card-header" onclick={handleToggleFaculty} data-id={college.Id}>
+                    <div class="card-header-info">
+                        <h3 class="college-name">{college.Name}</h3>
+                        <p class="college-location">{college.Location}</p>
+                    </div>
+                    <div class="card-avatar">
+                        <div class="avatar"></div>
+                    </div>
+                </div>
+
+                <template if:true={college.expanded}>
+                    <div class="faculty-section">
+                        <div class="faculty-table-container">
+                            <table class="faculty-table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-header">Name</th>
+                                        <th class="table-header">Position</th>
+                                        <th class="table-header">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={college.faculty} for:item="faculty">
+                                        <tr key={faculty.Id} class="table-row">
+                                            <td class="table-cell">{faculty.Name}</td>
+                                            <td class="table-cell">{faculty.Position__c}</td>
+                                            <td class="table-cell">{faculty.Email__c}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template> -->
+
+
+
+<!-- <template>
+    <h1>{collegeName}</h1>
+
+    <lightning-card>
+        <div class="card-header" onclick={toggleExpand}>
+            <h2>Faculty List</h2>
+        </div>
+
+        <div class={expandClass}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={facultyList} for:item="faculty">
+                        <tr key={faculty.id}>
+                            <td>{faculty.name}</td>
+                            <td>{faculty.position}</td>
+                            <td>{faculty.email}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template> -->
+
+
+
+<!-- <template>
+    <lightning-card title="Colleges and Faculty" icon-name="custom:custom14">
+        <template if:true={collegeData}>
+            <template for:each={collegeClasses} for:item="college">
+                <div 
+                    key={college.id} 
+                    class={college.className} 
+                    data-id={college.id} 
+                    onclick={handleCardClick}
+                >
+                    <div class="cardHeader">
+                        <h3>{college.Name}</h3>
+                        <div class="cardAvatarContainer">
+                            <div class="cardAvatar"></div>
+                        </div>
+                    </div>
+
+                    <template if:true={college.isActive}>
+                        <template if:true={college.facultyList}>
+                            <table class="tableContainer">
+                                <thead>
+                                    <tr>
+                                        <th class="tableCellHeader">Faculty Name</th>
+                                        <th class="tableCellHeader">Position</th>
+                                        <th class="tableCellHeader">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={college.facultyList} for:item="faculty">
+                                        <tr key={faculty.id} class="tableRow">
+                                            <td class="tableCell">{faculty.Name}</td>
+                                            <td class="tableCell">{faculty.Position__c}</td>
+                                            <td class="tableCell">{faculty.Email__c}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:false={college.facultyList}>
+                            <p>No faculty data available.</p>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </template>
+
+        <template if:true={error}>
+            <div class="error">
+                <p>Error loading data: {error}</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>
+ -->
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<template>
+    
+    <template for:each={facultyRecords} for:item="faculty">
+        <div class="card" data-id={faculty.Id} onclick={handleCardClick} key={faculty.Id}>
+            <section class="cardHeader">
+                <span class="cardAvatarContainer">
+                    <span class="cardAvatar"></span>
+                </span>
+                <span class="cardHeaderTextContainer">
+                    <div class="cardHeaderTitle">
+                        <p>{faculty.Name}</p>
+                    </div>
+                    <div class="cardHeaderSupportingText">
+                        {faculty.Last_Name__c}
+                    </div>
+                </span>
+            </section>
+            <section class="nonSharedContent">
+
+                <section class="greySquaresContainer">
+                     <span class="greyLine">{faculty.Position__c}</span> 
+
+                    <table>
+                        <tr>
+                            <td>{faculty.Position__c}</td>
+                            <td>{faculty.Email__c}</td>
+                        </tr>
+                    </table>
+                </section>
+               
+            </section>
+        </div>
+    </template>
+    
+
+
+</template> -->
+
+
+
+ <!-- <section class="greySquaresContainer">
+                    <span class="greyLine">{faculty.Email__c}</span>
+                </section> -->
+
+
+                <!-- <section class="greySquaresContainer">
+                     Loop over data items (if any) 
+                    <template for:each={faculty.Data_Field_1__c} for:item="info">
+                        <span class="greySquare" key={info}>{info}</span>
+                    </template>
+                </section>
+                 Loop over details items (if any) 
+                <template for:each={faculty.Detail_1__c} for:item="detail">
+                    <div class="greyLine" key={detail}>{detail}</div>
+                </template> -->
+
+
+<!-- ======================================================================== -->
+
+<!-- 
+<template>
+    <template if:true={facultyData}>
+        <template for:each={facultyData} for:item="faculty">
+            <div key={faculty.name} class="card" onclick={handleCardClick}>
+                <section class="cardHeader">
+                    <span class="cardAvatarContainer">
+                        <span class="cardAvatar"></span>
+                    </span>
+                    <span class="cardHeaderTextContainer">
+                        <div class="cardHeaderTitle"><p>{faculty.name}</p></div>
+                        <div class="cardHeaderSupportingText">{faculty.description}</div>
+                    </span>
+                </section>
+               
+            </div>
+        </template>
+    </template>
+
+    <template if:true={error}>
+        <div class="error">Error loading faculty data: {error}</div>
+    </template>
+</template> -->
+
+
+<!-- ======================================================================================== -->
+
+
+<!-- <template>
+    <div class="wrapper">
+        <div class="header">
+            <h1 class="header__title">Expanding Card Grid</h1>
+            <h2 class="header__subtitle">with Flexbox</h2>
+        </div>
+
+        <div class="cards">
+            <template for:each={cards} for:item="card" for:index="index">
+                <div key={card.id} class={getCardClass(card.id)}>
+                    <div class="card__inner" data-id={card.id} onclick={toggleCard}>
+                        <span>Card</span>
+                        <i class="fa fa-folder-o"></i>
+                    </div>
+                    <div class="card__expander">
+                        <i class="fa fa-close" onclick={closeCard}></i>
+                        Expander
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template> -->
+
+
+
+
+
+
+<!-- <template>
+    <div class="card" onclick={handleCardClick}>
+        <section class="cardHeader">
+            <span class="cardAvatarContainer">
+                <span class="cardAvatar"></span>
+            </span>
+            <span class="cardHeaderTextContainer">
+                <div class="cardHeaderTitle"><p>Faculty information here </p></div>
+                <div class="cardHeaderSupportingText">Text description</div>
+            </span>
+        </section>
+        <section class="nonSharedContent">
+            <section class="greySquaresContainer">
+                <span class="greySquare">information data 1</span>
+                <span class="greySquare">information data 2</span>
+                <span class="greySquare">information data 3</span>
+                <span class="greySquare">information data 4</span>
+            </section>
+            <div class="greyLine">Detailed Info 234</div>
+            <div class="greyLine">Detailed Info 657</div>
+        </section>
+    </div>
+</template> -->

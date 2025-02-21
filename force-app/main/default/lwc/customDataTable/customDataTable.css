@@ -1,0 +1,70 @@
+/* Style for the lightning-card container */
+lightning-card {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.space1{
+    padding: 20px;
+}
+
+/* Styling the card content */
+.slds-p-horizontal_medium {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    
+}
+.slds-card{
+    border-radius: 10px;
+}
+
+/* Heading for the contact name */
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1c3d60; /* Custom color for the name */
+}
+
+/* Image styling for the contact image */
+.contact-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Styling the description */
+p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Fallback for when no contact image is available */
+.contact-image[alt="Contact Image"]:not([src]) {
+    background-color: #e1e1e1;
+    border-radius: 8px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 1rem;
+}
+
+/* Error message style */
+.slds-text-color_error {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Message when no contacts are available */
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+}

@@ -1,0 +1,555 @@
+
+
+/* card styles */
+.card {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 8px;
+    background-color: #fefefe;
+    height: 55px; 
+    max-width: 100%;
+    overflow: hidden;
+    transition: height 0.375s cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin: 20px;
+    padding: 10px;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card h2{
+    text-align: center;
+    width: 100%;
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 25px;
+}
+
+.heading{
+    padding: 10px;
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: justify;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: #88877f;
+    margin-bottom: 20px;
+    margin-top: 20px;;
+    color: white;
+    margin-left: 16px;
+    margin-right: 16px;
+
+}
+/* .heading h1{
+    padding: 10px;
+    margin: 10px;
+} */
+
+.cardActive {
+    height: auto;
+    padding-bottom: 20px;
+  
+}
+
+.cardHeader {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 72px;
+    padding-top: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    transition: background-color 0.3s ease;
+}
+
+.cardHeader:hover {
+    background-color: #f4f4f4;
+}
+
+.cardHeaderTextContainer {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}
+
+.cardHeaderTitle {
+    color: #333;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.cardAvatarContainer {
+    display: inline-block;
+    margin: 0 16px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.cardAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #2196f2;
+}
+
+.tableContainer {
+    width: 100%;
+    padding: 20px;
+    display: table;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tableRow {
+    display: table-row;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableCell {
+    padding: 10px;
+    display: table-cell;
+    width: 50%;
+    border-right: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.tableCell:last-child {
+    border-right: none;
+}
+
+.tableCellHeader {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+
+table th{
+    background-color: #f4f4f4;
+    font-weight: bold;
+    padding-inline-start: 9px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Loading Spinner */
+.lightning-spinner {
+    display: block;
+    margin: 20px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .card {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 2px;
+    background-color: #fefefe;
+    height: 88px;
+    max-width: 500px;
+    overflow: hidden;
+    transition: 375ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin: auto;
+    position: relative;
+    margin-bottom: 16px;
+    will-change: height;
+}
+
+.card-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 72px;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.card-header-info {
+    flex: 1;
+}
+
+.college-name {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+    transition: 150ms;
+}
+
+.college-location {
+    font-size: 14px;
+    color: #757575;
+    margin: 0;
+    transition: 150ms;
+}
+
+.card-avatar {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #2196f2;
+}
+
+.faculty-section {
+    display: none; 
+    padding: 16px;
+    background-color: #f9f9f9;
+    opacity: 0; 
+    transition: opacity 300ms ease-in-out; 
+}
+
+.faculty-section.active {
+    display: block;
+    opacity: 1; 
+}
+
+.faculty-table-container {
+    overflow-x: auto;
+}
+
+.faculty-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    background-color: #2196f2;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table-cell {
+    padding: 12px;
+    font-size: 14px;
+}
+
+.cardActive {
+    height: auto; 
+}
+
+.cardActive .faculty-section {
+    display: block; 
+    opacity: 1; 
+}
+
+.card-header .college-name, .card-header .college-location {
+    transition: 150ms;
+    color: #2196f2; 
+}
+ */
+
+
+
+
+
+
+/* Default state: content is collapsed */
+/* .collapse {
+    display: none;
+}
+
+.expand {
+    display: block;
+}
+
+.card-header {
+    cursor: pointer;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================== */
+
+
+
+/* 
+* {
+    margin: 0;
+    padding: 0;
+} 
+
+.card {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 2px;
+    background-color: #fefefe;
+    height: 88px;
+    max-width: 500px;
+    overflow: hidden;
+    transition: 375ms cubic-bezier(0.4, 0.0, 0.2, 1);
+
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.cardActive {
+    height: 332px;
+}
+
+.cardActive .nonSharedContent {
+    transition: 150ms;
+    transition-delay: 75ms;
+    opacity: 1;
+}
+
+.nonSharedContent {
+    transition: 75ms;
+    opacity: 0;
+}
+
+.cardHeader {
+    cursor: pointer;
+    width: 100%;
+    height: 72px;
+    padding-top: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cardHeaderTextContainer {
+    display: inline-block;
+    height: 100%;
+    padding-top: 4px;
+    width: auto;
+}
+
+.cardHeaderTitle {
+    background-color: #2196f2;
+    width: 184px;
+    height: 16px;
+    margin-bottom: 16px;
+}
+
+.cardHeaderSupportingText {
+    background-color: #2196f2;
+    height: 16px;
+    width: 136px;
+}
+
+.cardAvatarContainer {
+    display: inline-block;
+    margin: 0 16px;
+    height: 100%;
+    float: left;
+}
+
+.cardAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #2196f2;
+    display: inline-block;
+}
+
+.greySquaresContainer {
+    width: 200%;
+    padding: 10px;
+}
+
+.greySquare {
+    margin: 8px;
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background-color: #ededed;
+    border-radius: 2px;
+}
+
+.greyLine {
+    width: 160px;
+    height: 16px;
+    margin: 24px 16px;
+    background-color: #ededed;
+}
+
+.greyLine:first-of-type {
+    width: 220px;
+    margin: 0 16px;
+}  */
+
+
+/* ------------------------------------------------------------- */
+
+
+/* 
+.wrapper {
+    margin: 5em auto;
+    max-width: 1000px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
+}
+
+.header {
+    padding: 30px 30px 0;
+    text-align: center;
+}
+
+.header__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.header__subtitle {
+    margin: 0;
+    font-size: 1.5em;
+    color: #757575;
+    font-family: 'Yesteryear', cursive;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.cards {
+    padding: 15px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    margin: 15px;
+    width: calc((100% / 3) - 30px);
+    transition: all 0.2s ease-in-out;
+}
+
+.card__inner {
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    background-color: #d6d6d6;
+    color: #eceef1;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.card__expander {
+    transition: all 0.2s ease-in-out;
+    background-color: #a1a1a1;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: #eceef1;
+    font-size: 1.5em;
+}
+
+.card__expander .fa {
+    font-size: 0.75em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+ */
+
+
+
+

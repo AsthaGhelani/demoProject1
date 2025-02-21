@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Update Student Inquiry">
+        <div class="slds-p-around_medium">
+            <lightning-record-edit-form object-api-name="Student_Inquiry_Lead__c" record-id={leadId}>
+                <lightning-messages></lightning-messages>
+                <lightning-input label="User Id" name="userId" value={userId} onchange={handleInputChange}>
+                    </lightning-input>
+                <lightning-input label="Password" name="password" value={password} onchange={handleInputChange}>
+                    </lightning-input>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,249 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* animation: scrollCarousel 15s infinite;  */
+    /* Auto scroll animation */
+}
+
+.carousel-slide {
+    position: relative;
+    min-width: 100%;
+    transition: opacity 1s ease-in-out;;
+    
+}
+
+
+
+.carousel-slide img {
+   
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+    object-fit: cover;
+    /* Add the blur effect */
+    /* filter: blur(1px);
+    -webkit-filter: blur(2px); */
+}
+
+/* .carousel-text {
+    position: absolute;
+    bottom: 20px;
+    
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInText 1s 0.5s forwards;
+} */
+
+
+
+
+
+
+/* Pseudo-element to apply the blur effect to the background */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;  /* Take the image from the img tag */
+    filter: blur(10px);   /* Apply the blur effect */
+    z-index: 0;           /* Keep it behind the text */
+}
+
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button.prev {
+    left: 0;
+}
+
+button.next {
+    right: 0;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Define the different positions of the carousel using simple transform */
+.carousel-position-0 {
+    transform: translateX(0);
+}
+
+.carousel-position-1 {
+    transform: translateX(-100%);
+}
+
+.carousel-position-2 {
+    transform: translateX(-200%);
+}
+.carousel-position-3 {
+    transform: translateX(-300%);
+}
+/* .carousel-position-4 {
+    transform: translateX(-400%);
+} */
+
+
+/* Keyframes for the auto-scrolling animation */
+@keyframes scrollCarousel {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-100%);
+    }
+    40% {
+        transform: translateX(-200%);
+    }
+    60% {
+        transform: translateX(-300%);
+    }
+    80% {
+        transform: translateX(-400%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* Fade-in and Fade-out Animations for Image and Text */
+@keyframes fadeInImage {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* @keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+/* Add zoom effect on image hover */
+.carousel-img {
+    animation: zoomInImage 1s forwards;
+}
+
+/* .carousel-text {
+    animation: fadeInText 0.8s 0.5s forwards;
+} */
+
+
+
+.carousel-text {
+    position: absolute;
+    bottom: 50%;  /* Adjusts vertical positioning */
+    left: 7%;  /* Center horizontally */
+    transform: translateX(-50%);
+    font-size: 32px;  /* Slightly larger for better readability */
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 10px 6px rgba(0, 0, 0, 0.9);  /* Stronger shadow for contrast */
+    text-align: center;
+    /* width: 100%; */
+    opacity: 0;
+    animation: fadeInText 1s 0.5s forwards;
+    z-index: 2; /* Ensure text is above the blurred image */
+}
+
+.main-text {
+    font-size: 32px;  /* Main text size */
+    margin-bottom: 10px;  /* Space between main and secondary text */
+}
+
+.secondary-text {
+    font-size: 18px;  /* Smaller font size for secondary text */
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);  /* Light shadow for better readability */
+    margin-top: 5px;  /* Adds space above the secondary text */
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-text:hover {
+    transform: translateX(-50%) translateY(-5px);
+    font-size: 34px; 
+    transition: transform 0.3s, font-size 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .carousel-image {
+    position: relative;
+}
+
+.carousel-text {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+} */

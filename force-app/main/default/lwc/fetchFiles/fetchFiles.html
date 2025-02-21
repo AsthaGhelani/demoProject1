@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Student Profile">
+        <div class="slds-p-around_medium">
+            <template if:true={imageUrl}>
+                <img src={imageUrl} alt="Student Image" />
+            </template>
+            <template if:true={error}>
+                <p>Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

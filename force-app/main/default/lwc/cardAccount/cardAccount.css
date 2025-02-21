@@ -1,0 +1,23 @@
+.slds-modal__container {
+    width: 50%;
+}
+
+.slds-backdrop_open {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.bc {
+    --sds-c-button-destructive-color-background: green;
+    --sds-c-button-destructive-color-border: green;
+}
+
+.bc:hover{
+    --sds-c-button-destructive-color-background:rgb(11, 27, 252);
+}
+.no-wrap {
+    white-space: normal;
+}
+
+
+

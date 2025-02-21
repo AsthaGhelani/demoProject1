@@ -1,0 +1,56 @@
+<template>
+    <!-- Tab Navigation -->
+    <div class="slds-tabs_default">
+        <ul class="slds-tabs_default__nav" role="tablist">
+            <li class="slds-tabs_default__item" role="presentation">
+                <a href="javascript:void(0);" 
+                   class={profileTabClass} 
+                   data-id="profile" 
+                   onclick={handleTabClick}>
+                    Profile
+                </a>
+            </li>
+            <li class="slds-tabs_default__item" role="presentation">
+                <a href="javascript:void(0);" 
+                   class={documentTabClass} 
+                   data-id="document" 
+                   onclick={handleTabClick}>
+                    Document
+                </a>
+            </li>
+            <li class="slds-tabs_default__item" role="presentation">
+                <a href="javascript:void(0);" 
+                   class={feesPaymentTabClass} 
+                   data-id="fees-payment" 
+                   onclick={handleTabClick}>
+                    Fees Payment
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="slds-tabs_default__content">
+            <template if:true={isProfileActive}>
+                <!-- Profile Section -->
+                <div class="slds-box slds-box_xx-small">
+                    <!-- Add your profile content here -->
+                    <p>Profile content goes here</p>
+                </div>
+            </template>
+            <template if:true={isDocumentActive}>
+                <!-- Document Section -->
+                <div class="slds-box slds-box_xx-small">
+                    <!-- Add your document content here -->
+                    <p>Document content goes here</p>
+                </div>
+            </template>
+            <template if:true={isFeesPaymentActive}>
+                <!-- Fees Payment Section -->
+                <div class="slds-box slds-box_xx-small">
+                    <!-- Add your fees payment content here -->
+                    <p>Fees Payment content goes here</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

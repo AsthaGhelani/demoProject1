@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Contact Details" icon-name="standard:contact">
+        <template if:true={contactData}>
+            <div class="card-container">
+                <div class="image-container">
+                    <!-- Use a fallback URL for the image if contactPhotoUrl is unavailable -->
+                    <img src={contactPhotoUrl} alt="Contact Image" class="contact-image" onerror={handleImageError} />
+                </div>
+                <div class="info-container">
+                    <h3 class="contact-name">{contactName}</h3>
+                    <p class="contact-description">{contactDescription}</p>
+                    <lightning-button variant="brand" label="More Info" data-account-id={recordId} onclick={navigateCourse}></lightning-button>
+                </div>
+            </div>
+        </template>
+        <template if:false={contactData}>
+            <p>No contact data available</p>
+        </template>
+    </lightning-card>
+</template>
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+        <lightning-card title="Contact Details" icon-name="standard:contact">
+            <template if:true={contact}>
+                <div class="card-container">
+                    <div class="image-container">
+                        <img src={contactPhotoUrl} alt="Contact Image" class="contact-image"/>
+                    </div>
+                    <div class="info-container">
+                        <h3 class="contact-name">{contactName}</h3>
+                        <p class="contact-description">{contactDescription}</p>
+                    </div>
+                </div>
+            </template>
+            <template if:false={contact}>
+                <p>No contact data available</p>
+            </template>
+        </lightning-card>
+    
+</template> -->

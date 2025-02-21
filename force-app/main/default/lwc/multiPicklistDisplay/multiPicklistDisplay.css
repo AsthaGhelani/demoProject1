@@ -1,0 +1,38 @@
+
+
+space1{
+    height: 25vh;
+}
+
+
+
+.slds-grid_vertical-align-stretch {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    height: 100% !important;
+}
+
+.card-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.slds-card {
+    display: flex;
+    flex-direction: column;
+    height: 25vh;
+}
+
+.slds-card__header,
+.slds-card__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
