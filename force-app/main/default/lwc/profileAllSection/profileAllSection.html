@@ -1,5 +1,116 @@
 <template>
-    <!-- Tab Navigation -->
+    <lightning-card title="Upload Image" icon-name="custom:custom63">
+
+
+        <div class="slds-p-around_medium">
+
+            <template if:true={imageUrl}> 
+                <!-- <p>Uploaded Image:</p> -->
+                <!-- <div class="circularportrait">                     -->
+                   <div>
+                    <img src={imageSrc} alt="Uploaded Image" style="display: inline-block; position: relative; width: 200px; height: 200px; overflow: hidden; border-radius: 50%;" />
+                </div>
+                <!-- </div> -->
+            </template>
+            
+            <template if:false={imageUrl}>
+                <p>No image found.</p>
+            </template>
+            
+            <!-- File Upload Component -->
+            <lightning-file-upload
+                
+                name="fileUploader"
+                
+                onuploadfinished={handleUploadFinished}
+                record-id={recordId}>
+            </lightning-file-upload>
+
+
+            <!-- <template if:true={imageUrl}>
+                <div class="image-container">
+                    Dynamically display the image using the <img> tag from the Rich Text Area
+                    <div lwc:dom="manual" class="rich-text" inner-html={imageUrl}></div>
+                </div>
+            </template> -->
+
+
+
+           
+            <!-- Image Preview (using <img> tag) -->
+            <!-- <template if:true={dispImg}>
+                <img src={dispImg} alt="Uploaded Image" style="max-width: 100%; max-height: 300px;" />
+            </template> -->
+
+               <!-- Optionally, a close button to manually close the overlay -->
+               <lightning-button label="Close" onclick={closeOverlay}></lightning-button>
+
+        </div>
+    </lightning-card>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+    <lightning-file-upload 
+        label="Upload Image"
+        accept={acceptedFormats}
+        record-id={recordId}
+        onuploadfinished={handleUploadFinished}>
+    </lightning-file-upload>
+
+    <lightning-flow onstatuschange={handleFlowStatusChange}></lightning-flow>
+</template> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+    <lightning-file-upload 
+        label="Upload Image"
+        accept={acceptedFormats}
+        record-id={recordId}
+        onuploadfinished={handleUploadFinished}>
+    </lightning-file-upload>
+
+    <template if:true={uploadedFileUrl}>
+        <div class="slds-m-top_medium">
+            <h3>Uploaded Image:</h3>
+            <img src={uploadedFileUrl} alt="Uploaded Image" width="300"/>
+        </div>
+    </template>
+</template>
+ -->
+
+
+
+
+
+
+
+
+
+<!-- <template>
     <div class="slds-tabs_default">
         <ul class="slds-tabs_default__nav" role="tablist">
             <li class="slds-tabs_default__item" role="presentation">
@@ -28,29 +139,22 @@
             </li>
         </ul>
 
-        <!-- Tab Content -->
         <div class="slds-tabs_default__content">
             <template if:true={isProfileActive}>
-                <!-- Profile Section -->
                 <div class="slds-box slds-box_xx-small">
-                    <!-- Add your profile content here -->
                     <p>Profile content goes here</p>
                 </div>
             </template>
             <template if:true={isDocumentActive}>
-                <!-- Document Section -->
                 <div class="slds-box slds-box_xx-small">
-                    <!-- Add your document content here -->
                     <p>Document content goes here</p>
                 </div>
             </template>
             <template if:true={isFeesPaymentActive}>
-                <!-- Fees Payment Section -->
                 <div class="slds-box slds-box_xx-small">
-                    <!-- Add your fees payment content here -->
                     <p>Fees Payment content goes here</p>
                 </div>
             </template>
         </div>
     </div>
-</template>
+</template> -->

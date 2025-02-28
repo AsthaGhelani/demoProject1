@@ -1,0 +1,135 @@
+<template>
+    <!-- <lightning-card title="College Course List"> -->
+        <div class="slds-p-around_medium">
+            <!-- Horizontal Navigation Layout -->
+            <lightning-layout horizontal-align="spread" class="slds-grid slds-wrap">
+                <!-- College Name Filter -->
+                <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                    <lightning-combobox 
+                        name="collegeName" 
+                        label="Filter by College" 
+                        value={collegeNameFilter} 
+                        options={collegeNameOptions} 
+                        onchange={handleCollegeNameFilterChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+
+                <!-- Sort By Filter -->
+                <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                    <lightning-combobox 
+                        name="sortBy" 
+                        label="Sort By" 
+                        value={sortBy} 
+                        options={sortOptions} 
+                        onchange={handleSortByChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+
+                <!-- Sort Order Filter -->
+                <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                    <lightning-combobox 
+                        name="sortOrder" 
+                        label="Sort Order" 
+                        value={sortOrder} 
+                        options={sortOrderOptions} 
+                        onchange={handleSortOrderChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+
+
+<!-- 
+        .custom-table-container {
+            margin-top: 1rem;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        td {
+            padding: 8px 10px;
+            text-align: center;
+        } -->
+        
+
+         <!-- Custom Table -->
+          <div class="custom-table-container">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>College</th>
+                        <th>Fees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={colleges} for:item="course">
+                        <tr key={course.Id} class={course.rowClass}>
+                            <td>{course.Name}</td>
+                            <td class="college-column">{course.CollegeName}</td>
+                            <td>{course.Course_Fees__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        
+        
+
+        <!-- <template if:true={colleges}>
+            <lightning-datatable
+                key-field="id"
+                data={colleges}
+                columns={columns}
+                hide-checkbox-column="true"
+            ></lightning-datatable>
+        </template> -->
+
+        </div>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={hasError}>
+            <div class="slds-text-color_error">Error loading data.</div>
+        </template>
+    <!-- </lightning-card> -->
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+    <lightning-card title="College Data">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Filter by Name" value={nameFilter} onchange={handleNameChange}></lightning-input>
+            <lightning-input label="Filter by City" value={cityFilter} onchange={handleCityChange}></lightning-input>
+        </div>
+
+        <template if:true={colleges}>
+            <lightning-datatable
+                key-field="id"
+                data={colleges}
+                columns={columns}
+                hide-checkbox-column="true"
+            ></lightning-datatable>
+        </template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={hasError}>
+            <div class="slds-text-color_error">Error loading data.</div>
+        </template>
+    </lightning-card>
+</template> -->

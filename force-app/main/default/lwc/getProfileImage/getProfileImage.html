@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Student Profile">
+        <template if:true={imageUrl}>
+            <div class="image-container">
+                <!-- Display the image -->
+                <img src={imageUrl} alt="Uploaded Image" class="slds-card__image" />
+            </div>
+        </template>
+        <template if:false={imageUrl}>
+            <p>No image found.</p>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Record Page URL">
+        <template if:true={recordUrl}>
+            <div class="slds-p-around_medium">
+                <!-- Display the record page URL dynamically as a link -->
+                <p>Click to view the record page: 
+                    <a href={recordUrl} target="_blank" rel="noopener noreferrer">{recordUrl}</a>
+                </p>
+            </div>
+        </template>
+        <template if:false={recordUrl}>
+            <p>Record URL not available.</p>
+        </template>
+    </lightning-card>
+
+
+    <lightning-button label="Fetch Image" onclick={handleFlowStart}></lightning-button>
+
+    <!-- Flow component to call the flow -->
+    <lightning-flow
+        name="Fetch_Image_Flow"
+        onstatuschange={handleFlowStatusChange}
+        flow-api-name="Fetch_Image_Flow"
+    ></lightning-flow>
+
+    <!-- Display the image after the flow is complete -->
+    <template if:true={imageUrl}>
+        <img src={imageUrl} alt="Profile Image" style="width: 100px; height: 100px; border-radius: 50%;" />
+    </template>
+    <template if:false={imageUrl}>
+        <p>No image found.</p>
+    </template>
+
+
+</template>

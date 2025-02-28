@@ -1,5 +1,137 @@
-/* Style for the lightning-card container */
-lightning-card {
+/* lightning-card {
+    margin: 0;
+    padding: 0;
+    border: none; 
+}
+
+
+.space1 {
+    padding: 20px;
+}
+
+.slds-p-horizontal_medium {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+ .btnMoreInfo{
+    background-color: #33383b;
+    border-color: solid 1px #33383b;
+    color: white;
+    padding: 13px 42px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+    margin-bottom: 20px;
+    letter-spacing: 0px;
+    border-radius: 20px;
+
+ }
+ .btnMoreInfo:hover{
+    background-color: white;
+    border-color: solid 1px #33383b;
+    color: #33383b;
+    font-weight: bold;
+ }
+
+.titleHeading {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    color: #3C3D37;
+    margin: 20px 0;
+    padding: 12px;
+}
+
+.slds-card { 
+    --slds-c-card-radius-border:25px;
+   --slds-c-card-color-background:#F5F5F5;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3C3D37;
+}
+
+.description {
+    text-align: justify;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.contact-image {
+    width: 90%;
+    height: auto;
+    max-height: 265px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+.contact-image[alt="Contact Image"]:not([src]) {
+    background-color: #e1e1e1;
+    border-radius: 8px;
+    width: 70%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 1rem;
+    margin: 0 auto;
+}
+
+p {
+    font-size: 1rem;
+    color: #3C3D37;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.slds-text-color_error {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .contact-image {
+        width: 80%;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-image {
+        width: 90%;
+        max-height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-image {
+        width: 100%;
+        max-height: 250px;
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+ lightning-card {
     margin-bottom: 1rem;
     border-radius: 10px;
    
@@ -9,26 +141,27 @@ lightning-card {
     padding: 20px;
 }
 
-/* Styling the card content */
 .slds-p-horizontal_medium {
     padding-left: 1rem;
     padding-right: 1rem;
+   
+    max-height: 100%;
+    height: 70vh;
+    overflow: hidden;
     
 }
 .slds-card{
     border-radius: 10px;
 }
 
-/* Heading for the contact name */
 h1 {
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #1c3d60; /* Custom color for the name */
+    color: #1c3d60; 
 }
 
-/* Image styling for the contact image */
 .contact-image {
     width: 100%;
     height: 200px;
@@ -37,14 +170,12 @@ h1 {
     margin-bottom: 1rem;
 }
 
-/* Styling the description */
 p {
     font-size: 1rem;
     color: #555;
     line-height: 1.5;
 }
 
-/* Fallback for when no contact image is available */
 .contact-image[alt="Contact Image"]:not([src]) {
     background-color: #e1e1e1;
     border-radius: 8px;
@@ -56,15 +187,13 @@ p {
     font-size: 1rem;
 }
 
-/* Error message style */
 .slds-text-color_error {
     color: #d32f2f;
     font-weight: bold;
 }
 
-/* Message when no contacts are available */
 p {
     text-align: center;
     font-size: 1.2rem;
     color: #777;
-}
+} 

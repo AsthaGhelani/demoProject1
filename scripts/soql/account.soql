@@ -7,3 +7,5 @@ SELECT Id, FirstName, LastName, Title FROM Contact Where LastName = 'Denver'
 SELECT Id, VersionData FROM ContentVersion
 SELECT Id, ParentId, Name, ContentType FROM Attachment WHERE ParentId = 'a04dL000001h8zRQAQ'
 SELECT Id FROM Note WHERE ParentId ='a04dL000001h8zRQAQ'
+
+SELECT Id, Name, Course_Fees__c, College__r.Name FROM Course__c

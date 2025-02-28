@@ -1,0 +1,146 @@
+/* General table styles */
+.slds-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures table columns adjust well */
+}
+
+/* Table header styles */
+.table-header th {
+    background-color: #0070d2;
+    color: white;
+    text-align: center;
+    padding: 12px 15px;
+    font-size: 16px;
+}
+
+/* Table cell styling */
+td, th {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Ensure text breaks and wraps properly */
+    white-space: normal; /* Allow wrapping */
+}
+
+/* Specific class for the college column (or any other column with long text) */
+.college-column {
+    word-wrap: break-word; /* Force word wrapping within the column */
+    white-space: normal; /* Ensure it wraps within its container */
+    max-width: 300px; /* Limit the width of the column */
+    overflow: hidden; /* Prevent text from overflowing */
+    text-overflow: ellipsis; /*  if text is too long */
+}
+
+/* Custom container for the table (for responsive scrolling) */
+.custom-table-container {
+    margin-top: 1rem;
+    overflow-x: auto; /* Enables horizontal scrolling if needed */
+}
+
+/* Row styling for hover effect */
+tr:hover {
+    background-color: #f4f6f9;
+}
+
+/* Even and odd row background color */
+.even-row {
+    background-color: #f9fafb;
+}
+
+.odd-row {
+    background-color: #ffffff;
+}
+
+/* Add borders to table cells */
+.slds-table_bordered td {
+    border: 1px solid #d8dde6;
+}
+
+/* Add padding to table cells */
+.slds-table_cell-buffer {
+    padding: 10px;
+}
+
+/* Header row styling */
+.spacingth {
+    font-size: large;
+    text-align: center;
+    padding: 8px 10px;
+    background-color: #886e5c;
+    color: white;
+}
+
+/* Cell padding and centering for individual td elements */
+.spacingtd {
+    padding: 8px 10px;
+    text-align: center;
+}
+
+/* Responsive Design - for small screens */
+@media (max-width: 1024px) {
+    /* On tablets or smaller screens, allow horizontal scrolling */
+    .custom-table-container {
+        overflow-x: auto;
+    }
+
+    .slds-table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    td, th {
+        padding: 8px 10px;
+    }
+
+    .table-header th {
+        font-size: 14px;
+    }
+}
+
+/* Further adjustment for smaller mobile screens */
+@media (max-width: 768px) {
+    .slds-table {
+        font-size: 12px;
+    }
+
+    td, th {
+        padding: 6px 8px;
+    }
+
+    .table-header th {
+        font-size: 12px;
+    }
+
+    /* Stack table rows on smaller screens for better readability */
+    .slds-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    td, th {
+        display: block;
+        text-align: right;
+    }
+
+    td {
+        padding-left: 50%;
+        text-align: left;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .slds-table {
+        font-size: 10px;
+    }
+
+    td, th {
+        padding: 4px 6px;
+    }
+
+    .table-header th {
+        font-size: 10px;
+    }
+}
