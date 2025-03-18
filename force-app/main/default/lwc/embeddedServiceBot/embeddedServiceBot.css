@@ -1,0 +1,18 @@
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #005290;
+    font-family: "Arial", sans-serif;
+}
+
+.embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid #005290;
+}
+
+.embedded-service-container {
+    padding: 10px;
+}
+
+button {
+    background-color: #005290;
+    color: white;
+    font-size: 16px;
+}

@@ -16,16 +16,20 @@
                         <template for:each={semesters} for:item="semester">
                             <tr key={semester.Id}>
                                 <td class="slds-cell-wrap">{semester.Name}</td>
-                                <td class="slds-cell-wrap">{semester.Start_Date__c}</td>
+                                <td class="slds-cell-wrap">{semester.Start_date__c}</td>
                                 <td class="slds-cell-wrap">{semester.End_Date__c}</td>
                                 <td class="slds-cell-wrap">₹ {semester.Semester_Fees__c}</td>
                                 <td class="slds-text-align_center">
-                                    <button 
-                                        class="pay-button slds-button slds-button_neutral" 
-                                        data-id={semester.Id} 
-                                        onclick={handlePayClick}>
-                                        Pay
-                                    </button>
+                                      <!-- Pay button logic: Dynamically disable and change button text -->
+                                      <button 
+                                      class="pay-button slds-button slds-button_neutral" 
+                                      data-id={semester.Id} 
+                                      onclick={handlePayClick}
+                                      disabled={semester.buttonDisabled}> <!-- Use the new buttonDisabled property -->
+                                      {semester.buttonText} <!-- Display button text (Paid/Pay) -->
+                                  </button>
+                                  
+                                
                                 </td>
                             </tr>
                         </template>

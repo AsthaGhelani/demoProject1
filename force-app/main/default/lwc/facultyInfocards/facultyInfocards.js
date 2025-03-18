@@ -1,59 +1,71 @@
+import { LightningElement, track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import getCollegeIdByStudentId from '@salesforce/apex/FacultyInfoController.getCollegeIdByStudentId';
+import fetchFacultyForCollege from '@salesforce/apex/FacultyInfoController.fetchFacultyForCollege';
 
-import { LightningElement, wire } from 'lwc';
-import getAllColleges from '@salesforce/apex/FacultyInfoController.getAllColleges';
-import getFaculty from '@salesforce/apex/FacultyInfoController.getFacultyByCollegeId';
+export default class FacultyListDisplay extends LightningElement {
+    @track facultyList = [];  // Store fetched faculty data
+    @track errorMessage = '';  // Store error messages
+    @track studentId; // Store student ID
+    @track collegeId; // Store college ID
 
-export default class FacultyInfocards extends LightningElement {
-
-    collegeData = [];  // To hold all college records along with their faculty
-    isLoading = false; // To show loading state
-    error;  
-
-    // Wire the Apex method to get all colleges
-    @wire(getAllColleges)
-    wiredColleges({ error, data }) {
-        if (data) {
-            // For each college, fetch its faculty data
-            this.collegeData = data.map(college => ({
-                ...college,
-                facultyRecords: [],
-                isActive: false  // Initially, the card is not expanded
-            }));
-
-            // Fetch faculty for each college
-            this.collegeData.forEach(college => {
-                this.fetchFacultyData(college.Id);
-            });
-        } else if (error) {
-            this.error = error;  
-            console.error('Error loading colleges:', error);
+    connectedCallback() {
+        // Fetch studentId from sessionStorage (or elsewhere)
+        this.studentId = sessionStorage.getItem('studentId');
+        
+        if (this.studentId) {
+            this.fetchCollegeIdForStudent(this.studentId);  // Get the collegeId for the student
+        } else {
+            this.errorMessage = 'No student ID found in session.';
         }
     }
 
-    // Fetch the faculty list for a specific college
-    fetchFacultyData(collegeId) {
-        this.isLoading = true;
-        getFaculty({ collegeId })
+    // Fetch the college ID by studentId
+    fetchCollegeIdForStudent(studentId) {
+        getCollegeIdByStudentId({ studentId })
             .then(result => {
-                const college = this.collegeData.find(c => c.Id === collegeId);
-                if (college) {
-                    college.facultyRecords = result;  // Store the faculty data for this college
-                    this.collegeData = [...this.collegeData];  // Trigger reactivity to update the DOM
+                if (result) {
+                    this.collegeId = result;  // Set the collegeId
+                    this.fetchFacultyData(this.collegeId); // Fetch faculty data using the collegeId
+                } else {
+                    this.errorMessage = 'No college found for this student.';
                 }
-                this.isLoading = false;
             })
             .catch(error => {
-                this.isLoading = false;
-                this.error = error;
-                console.error('Error fetching faculty list:', error);
+                this.errorMessage = 'Error fetching college ID.';
+                console.error('Error:', error);
             });
     }
 
-    // Handle the card click event to toggle expansion
+    // Fetch faculty for the given collegeId
+    fetchFacultyData(collegeId) {
+        fetchFacultyForCollege({ collegeId })
+            .then(result => {
+                if (result && result.length > 0) {
+                    // Add showTable field to manage visibility of the faculty table
+                    this.facultyList = result.map(faculty => ({
+                        ...faculty,
+                        showTable: false  // Initially, all cards are collapsed
+                    }));
+                } else {
+                    this.errorMessage = 'No faculty found for this college.';
+                }
+            })
+            .catch(error => {
+                this.errorMessage = 'Error fetching faculty list.';
+                console.error('Error:', error);
+            });
+    }
+
+    // Handle click event on each faculty card
     handleCardClick(event) {
-        const cardId = event.target.closest('.card').dataset.id; // Get card ID
-        const card = this.template.querySelector(`[data-id="${cardId}"]`);
-        card.classList.toggle('cardActive'); // Toggle expansion
+        const clickedFacultyId = event.currentTarget.dataset.id; // Get the faculty ID from the clicked card
+        this.facultyList = this.facultyList.map(faculty => {
+            if (faculty.Id === clickedFacultyId) {
+                faculty.showTable = !faculty.showTable; // Toggle the visibility
+            }
+            return faculty;
+        });
     }
 }
 

@@ -9,3 +9,18 @@ SELECT Id, ParentId, Name, ContentType FROM Attachment WHERE ParentId = 'a04dL00
 SELECT Id FROM Note WHERE ParentId ='a04dL000001h8zRQAQ'
 
 SELECT Id, Name, Course_Fees__c, College__r.Name FROM Course__c
+
+
+
+SELECT Id, Name, Course__c 
+FROM Student__c 
+WHERE Name = 'SN-0022'
+LIMIT 1
+
+
+
+SELECT Id, Name, Subject_Code__c, Subject_Description__c, Subject_Image__c 
+FROM Subject__c 
+WHERE Course__c = 'courseId'
+
+

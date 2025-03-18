@@ -1,9 +1,110 @@
+
 <template>
-    <!-- <lightning-card title="College Course List"> -->
+    <!-- Filter and Sorting Controls -->
+    <div class="slds-p-around_medium">
+        <lightning-layout horizontal-align="spread" class="slds-grid slds-wrap">
+            <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                <lightning-combobox 
+                    name="collegeName" 
+                    label="Filter by College" 
+                    value={collegeNameFilter} 
+                    options={collegeNameOptions} 
+                    onchange={handleCollegeNameFilterChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                <lightning-combobox 
+                    name="sortBy" 
+                    label="Sort By" 
+                    value={sortBy} 
+                    options={sortOptions} 
+                    onchange={handleSortByChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
+                <lightning-combobox 
+                    name="sortOrder" 
+                    label="Sort Order" 
+                    value={sortOrder} 
+                    options={sortOrderOptions} 
+                    onchange={handleSortOrderChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+
+    <!-- Table to display courses -->
+    <div class="custom-table-container">
+        <lightning-datatable 
+            data={colleges} 
+            columns={columns} 
+            key-field="Id"
+            onrowaction={handleInquiryButtonClick}>
+        </lightning-datatable>
+    </div>
+
+    <!-- Modal Dialog for Inquiry -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" size="small" alternative-text="close" class="slds-button__icon slds-button__icon_small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Course Inquiry</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-record-edit-form 
+                        object-api-name="Student_Inquiry_Lead__c" 
+                        onsuccess={handleSubmit}>
+                        
+                        <lightning-input-field field-name="First_Name__c" label="First Name"></lightning-input-field>
+                        <lightning-input-field field-name="Last_Name__c" label="Last Name"></lightning-input-field>
+                        <lightning-input-field field-name="Email__c" label="Email"></lightning-input-field>
+                        <lightning-input-field field-name="Phone__c" label="Phone"></lightning-input-field>
+
+                        <!-- Add hidden fields for the selected course and college -->
+                        <lightning-input-field field-name="Course__c" value={selectedCourse} class="slds-hide"></lightning-input-field>
+                        <lightning-input-field field-name="College__c" value={selectedCollege} class="slds-hide"></lightning-input-field>
+
+                        <div class="slds-m-top_medium slds-text-align_center">
+                            <lightning-button variant="neutral" label="Cancel" onclick={closeModal}></lightning-button>
+                            <lightning-button variant="brand" label="Save" onclick={handleSubmit}></lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+    </template>
+
+    <template if:true={hasError}>
+        <div class="slds-text-color_error">Error loading data.</div>
+    </template>
+</template>
+
+
+
+
+
+
+
+
+<!-- ======================================================================================================== -->
+
+
+
+<!-- <template>
         <div class="slds-p-around_medium">
-            <!-- Horizontal Navigation Layout -->
             <lightning-layout horizontal-align="spread" class="slds-grid slds-wrap">
-                <!-- College Name Filter -->
                 <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
                     <lightning-combobox 
                         name="collegeName" 
@@ -14,7 +115,6 @@
                     </lightning-combobox>
                 </lightning-layout-item>
 
-                <!-- Sort By Filter -->
                 <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
                     <lightning-combobox 
                         name="sortBy" 
@@ -25,7 +125,6 @@
                     </lightning-combobox>
                 </lightning-layout-item>
 
-                <!-- Sort Order Filter -->
                 <lightning-layout-item padding="around-small" class="slds-size_1-of-3">
                     <lightning-combobox 
                         name="sortOrder" 
@@ -39,22 +138,8 @@
         </div>
 
 
-<!-- 
-        .custom-table-container {
-            margin-top: 1rem;
-        }
-        
-        table {
-            width: 100%;
-        }
-        
-        td {
-            padding: 8px 10px;
-            text-align: center;
-        } -->
-        
 
-         <!-- Custom Table -->
+
           <div class="custom-table-container">
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
                 <thead>
@@ -77,14 +162,7 @@
         
         
 
-        <!-- <template if:true={colleges}>
-            <lightning-datatable
-                key-field="id"
-                data={colleges}
-                columns={columns}
-                hide-checkbox-column="true"
-            ></lightning-datatable>
-        </template> -->
+       
 
         </div>
         <template if:true={isLoading}>
@@ -94,8 +172,7 @@
         <template if:true={hasError}>
             <div class="slds-text-color_error">Error loading data.</div>
         </template>
-    <!-- </lightning-card> -->
-</template>
+</template> -->
 
 
 

@@ -1,51 +1,63 @@
 import { LightningElement, track, wire } from 'lwc';
 import getColleges from '@salesforce/apex/CollegeListWithFilter.getColleges';
 import getDistinctColleges from '@salesforce/apex/CollegeListWithFilter.getDistinctColleges';
+import createInquiryLead from '@salesforce/apex/CollegeListWithFilter.createInquiryLead';  // Apex method to create Inquiry record
 
 export default class CollegeListWithFilter extends LightningElement {
+
+
+
     @track colleges = [];
     @track isLoading = false;
     @track hasError = false;
     @track collegeNameOptions = [];
-    collegeNameFilter = '';
+    @track isModalOpen = false;  // For controlling modal visibility
+    selectedCourse = null;
+    selectedCollege = null;
 
-    sortBy = 'Name'; // Default sorting by course name
-    sortOrder = 'ASC'; // Default sorting order is ascending
+    sortBy = 'Name';
+    sortOrder = 'ASC';
 
-    // Sorting options for dropdown
     sortOptions = [
         { label: 'Course Name', value: 'Name' },
         { label: 'Fees', value: 'Course_Fees__c' }
     ];
 
-    // Sort Order options (Ascending / Descending)
     sortOrderOptions = [
         { label: 'Ascending', value: 'ASC' },
         { label: 'Descending', value: 'DESC' }
     ];
 
-    //  columns for the datatable
     columns = [
         { label: 'Course Name', fieldName: 'Name' },
         { label: 'College', fieldName: 'CollegeName' },
-        { label: 'Fees', fieldName: 'Course_Fees__c', type: 'currency' }
+        { label: 'Fees', fieldName: 'Course_Fees__c', type: 'currency' },
+        {
+            label: 'Inquiry',
+            type: 'button',
+            typeAttributes: {
+                label: 'Inquire',
+                name: 'inquire',
+                variant: 'base',
+                disabled: false,
+                value: 'inquire'
+            }
+        }
     ];
 
-    //  fetch college data based on filters and sorting
-    @wire(getColleges, { 
-        nameFilter: '', 
-        cityFilter: '', 
+    @wire(getColleges, {
+        nameFilter: '',
+        cityFilter: '',
         sortBy: '$sortBy',
         sortOrder: '$sortOrder',
-        collegeNameFilter: '$collegeNameFilter' 
+        collegeNameFilter: ''
     })
     wiredColleges({ error, data }) {
         if (data) {
-            // Map the data to include dynamic row classes
             this.colleges = data.map((course, index) => ({
                 ...course,
-                CollegeName: course.College__r ? course.College__r.Name : 'No College',  // Safely handle null
-                rowClass: index % 2 === 0 ? 'even-row' : 'odd-row' // Assign class based on index
+                CollegeName: course.College__r ? course.College__r.Name : 'No College',
+                rowClass: index % 2 === 0 ? 'even-row' : 'odd-row'
             }));
             this.isLoading = false;
             this.hasError = false;
@@ -55,45 +67,40 @@ export default class CollegeListWithFilter extends LightningElement {
         }
     }
 
-    //  to fetch distinct college names for the filter
     @wire(getDistinctColleges)
     wiredDistinctColleges({ error, data }) {
         if (data) {
-            // Include the "All Colleges" option at the top of the list
-            this.collegeNameOptions = [
-                { label: 'All Colleges', value: '' },  // Value as empty string to signify no filter
-                ...data.map(college => ({
-                    label: college.Name,
-                    value: college.Name
-                }))
-            ];
+            this.collegeNameOptions = [{ label: 'All Colleges', value: '' }, ...data.map(college => ({ label: college.Name, value: college.Name }))];
         } else if (error) {
             console.error('Error fetching distinct colleges', error);
         }
     }
 
-    // Handle changes to Sort By (course name or fees)
-    handleSortByChange(event) {
-        this.sortBy = event.target.value;
-        this.fetchData();
+    handleInquiryButtonClick(event) {
+        const row = event.detail.row;
+        this.selectedCourse = row.Name;
+        this.selectedCollege = row.College__r ? row.College__r.Name : 'No College';
+        this.isModalOpen = true;  // Open the modal dialog
     }
 
-    // Handle changes to Sort Order (ascending/descending)
-    handleSortOrderChange(event) {
-        this.sortOrder = event.target.value;
-        this.fetchData();
+    closeModal() {
+        this.isModalOpen = false;
     }
 
-    // Handle changes to College Name filter (including "All Colleges")
-    handleCollegeNameFilterChange(event) {
-        this.collegeNameFilter = event.target.value;  // Will be empty if "All Colleges" is selected
-        this.fetchData();
-    }
+    handleSubmit(event) {
+        // Logic to save the inquiry
+        const fields = event.detail.fields;
+        fields.Course__c = this.selectedCourse;
+        fields.College__c = this.selectedCollege;
 
-    // Fetch data based on current filters and sorting
-    fetchData() {
-        this.isLoading = true;
-        // Trigger the wired method to fetch data again based on the updated filter
+        createInquiryLead({ inquiryData: fields })
+            .then(() => {
+                this.closeModal();
+                // Optionally, show success notification here
+            })
+            .catch((error) => {
+                console.error('Error saving inquiry', error);
+            });
     }
 }
 
@@ -103,6 +110,115 @@ export default class CollegeListWithFilter extends LightningElement {
 
 
 
+
+// =============================================================================================================================================================
+
+
+
+// import { LightningElement, track, wire } from 'lwc';
+// import getColleges from '@salesforce/apex/CollegeListWithFilter.getColleges';
+// import getDistinctColleges from '@salesforce/apex/CollegeListWithFilter.getDistinctColleges';
+
+// export default class CollegeListWithFilter extends LightningElement {
+//     @track colleges = [];
+//     @track isLoading = false;
+//     @track hasError = false;
+//     @track collegeNameOptions = [];
+//     collegeNameFilter = '';
+
+//     sortBy = 'Name'; // Default sorting by course name
+//     sortOrder = 'ASC'; // Default sorting order is ascending
+
+//     // Sorting options for dropdown
+//     sortOptions = [
+//         { label: 'Course Name', value: 'Name' },
+//         { label: 'Fees', value: 'Course_Fees__c' }
+//     ];
+
+//     // Sort Order options (Ascending / Descending)
+//     sortOrderOptions = [
+//         { label: 'Ascending', value: 'ASC' },
+//         { label: 'Descending', value: 'DESC' }
+//     ];
+
+//     //  columns for the datatable
+//     columns = [
+//         { label: 'Course Name', fieldName: 'Name' },
+//         { label: 'College', fieldName: 'CollegeName' },
+//         { label: 'Fees', fieldName: 'Course_Fees__c', type: 'currency' }
+//     ];
+
+//     //  fetch college data based on filters and sorting
+//     @wire(getColleges, { 
+//         nameFilter: '', 
+//         cityFilter: '', 
+//         sortBy: '$sortBy',
+//         sortOrder: '$sortOrder',
+//         collegeNameFilter: '$collegeNameFilter' 
+//     })
+//     wiredColleges({ error, data }) {
+//         if (data) {
+//             // Map the data to include dynamic row classes
+//             this.colleges = data.map((course, index) => ({
+//                 ...course,
+//                 CollegeName: course.College__r ? course.College__r.Name : 'No College',  // Safely handle null
+//                 rowClass: index % 2 === 0 ? 'even-row' : 'odd-row' // Assign class based on index
+//             }));
+//             this.isLoading = false;
+//             this.hasError = false;
+//         } else if (error) {
+//             this.hasError = true;
+//             this.isLoading = false;
+//         }
+//     }
+
+//     //  to fetch distinct college names for the filter
+//     @wire(getDistinctColleges)
+//     wiredDistinctColleges({ error, data }) {
+//         if (data) {
+//             // Include the "All Colleges" option at the top of the list
+//             this.collegeNameOptions = [
+//                 { label: 'All Colleges', value: '' },  // Value as empty string to signify no filter
+//                 ...data.map(college => ({
+//                     label: college.Name,
+//                     value: college.Name
+//                 }))
+//             ];
+//         } else if (error) {
+//             console.error('Error fetching distinct colleges', error);
+//         }
+//     }
+
+//     // Handle changes to Sort By (course name or fees)
+//     handleSortByChange(event) {
+//         this.sortBy = event.target.value;
+//         this.fetchData();
+//     }
+
+//     // Handle changes to Sort Order (ascending/descending)
+//     handleSortOrderChange(event) {
+//         this.sortOrder = event.target.value;
+//         this.fetchData();
+//     }
+
+//     // Handle changes to College Name filter (including "All Colleges")
+//     handleCollegeNameFilterChange(event) {
+//         this.collegeNameFilter = event.target.value;  // Will be empty if "All Colleges" is selected
+//         this.fetchData();
+//     }
+
+//     // Fetch data based on current filters and sorting
+//     fetchData() {
+//         this.isLoading = true;
+//         // Trigger the wired method to fetch data again based on the updated filter
+//     }
+// }
+
+
+
+
+
+// ======================================================================================================================================
 
 
 

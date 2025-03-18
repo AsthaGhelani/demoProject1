@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type='text/css'>
+        .embeddedServiceHelpButton .helpButton .uiButton {
+            background-color: #005290;
+            font-family: "Arial", sans-serif;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+            outline: 1px solid #005290;
+        }
+    </style>
+    <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+    <script type='text/javascript'>
+        var initESW = function(gslbBaseURL) {
+            embedded_svc.settings.displayHelpButton = true; // Or false
+            embedded_svc.settings.language = ''; // For example, enter 'en' or 'en-US'
+    
+            // Settings for Chat
+            embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+            embedded_svc.settings.entryFeature = 'LiveAgent';
+    
+            embedded_svc.init(
+                'https://kriittechnologies44-dev-ed.develop.my.salesforce.com',
+                'https://kriittechnologies44-dev-ed.develop.my.site.com/studentEnrollmentProcessvforcesite',
+                gslbBaseURL,
+                '00DdL00000JDyBm',
+                'Enrollment_Help',
+                {
+                    baseLiveAgentContentURL: 'https://c.la11-core1.sfdc-y37hzm.salesforceliveagent.com/content',
+                    deploymentId: '572dL00000C3GED',
+                    buttonId: '573dL0000035QHt',
+                    baseLiveAgentURL: 'https://d.la11-core1.sfdc-y37hzm.salesforceliveagent.com/chat',
+                    eswLiveAgentDevName: 'Enrollment_Help',
+                    isOfflineSupportEnabled: false
+                }
+            );
+        };
+
+        if (!window.embedded_svc) {
+            var s = document.createElement('script');
+            s.setAttribute('src', 'https://kriittechnologies44-dev-ed.develop.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+            s.onload = function() {
+                initESW(null);
+            };
+            document.body.appendChild(s);
+        } else {
+            initESW('https://service.force.com');
+        }
+    </script>
+</head>
+<body>
+    <!-- This HTML file will contain the embedded service chat setup -->
+</body>
+</html>

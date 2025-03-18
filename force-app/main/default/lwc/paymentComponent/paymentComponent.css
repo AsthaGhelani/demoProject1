@@ -1,3 +1,56 @@
+/* Status bar styles */
+.status-bar-unpaid {
+    width: 100%;
+    height: 5px;
+    background-color: red;
+    color: white;
+    padding: 2px;
+    text-align: center;
+}
+
+.status-bar-paid {
+    width: 100%;
+    height: 5px;
+    background-color: green;
+    color: white;
+    padding: 2px;
+    text-align: center;
+}
+
+/* Disabled button styling */
+.pay-button:disabled {
+    background-color: #dcdcdc;
+    cursor: not-allowed;
+}
+
+/* Green checkmark icon when paid */
+.pay-button[disabled]::after {
+    content: " ✔";
+    color: green;
+}
+
+
+/* Styles for paid and unpaid status */
+.status-paid {
+    background-color: #4caf50; /* Green for Paid */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.status-unpaid {
+    background-color: #f44336; /* Red for Unpaid */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
 .custom-table-container {
     overflow-x: auto;
     padding: 10px;

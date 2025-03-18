@@ -18,37 +18,42 @@
         </h1>
     </div>
     <!-- Loop through colleges and display their faculty records -->
-    <template for:each={collegeData} for:item="college">
-        <div key={college.Id} class="card" data-id={college.Id} onclick={handleCardClick}>
-            <h2>{college.Name}</h2>
-
-            <!-- Faculty Table -->
-            <template if:true={college.facultyRecords}>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <template for:each={college.facultyRecords} for:item="faculty">
-                            <tr key={faculty.Id}>
-                                <td>{faculty.Name}</td>
-                                <td>{faculty.Position__c}</td>
-                                <td>{faculty.Email__c}</td>
-                            </tr>
+        <!-- <lightning-card title="Faculty List"> -->
+            <template if:true={errorMessage}>
+                <p>{errorMessage}</p>
+            </template>
+             
+                <template if:true={facultyList}>
+                
+                        <template for:each={facultyList} for:item="faculty">
+                            <div key={faculty.Id} class="faculty-card" data-id={faculty.Id} onclick={handleCardClick}>
+                                <h3>{faculty.Name} {faculty.Last_Name__c}</h3>
+                                <p>{faculty.Position__c}</p>
+                                
+                               
+                                    <template if:true={faculty.showTable}> 
+                                        <div class="tableContainer ">
+                                            <table class="faculty-details">
+                                                <tr>
+                                                    <td>Email:</td>
+                                                    <td>Position</td>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <td>{faculty.Email__c}</td>
+                                                    <td>{faculty.Position__c}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </template>
+                            </div>
                         </template>
-                    </tbody>
-                </table>
-            </template>
-
-            <template if:false={college.facultyRecords}>
-                <p>No faculty data available for this college.</p>
-            </template>
-        </div>
-    </template>
+                    
+                </template>
+            
+        <!-- </lightning-card> -->
+    
+    
 </template>
 
 

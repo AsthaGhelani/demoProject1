@@ -9,7 +9,7 @@ public with sharing class CollegeListWithFilter {
     
     @AuraEnabled(cacheable=true)
     public static List<Course__c> getColleges(String nameFilter, String cityFilter, String sortBy, String sortOrder, String collegeNameFilter) {
-        // Start building the query
+
         String query = 'SELECT Id, Name, Course_Fees__c, College__r.Name FROM Course__c';
 
         // Apply filters if any are provided
@@ -51,6 +51,24 @@ public with sharing class CollegeListWithFilter {
         List<Course__c> courses = Database.query(query);
         return courses;
     }
+
+    @AuraEnabled
+    public static void createInquiryLead(Map<String, Object> inquiryData) {
+        try {
+            Student_Inquiry_Lead__c newInquiry = new Student_Inquiry_Lead__c();
+            newInquiry.First_Name__c = (String)inquiryData.get('First_Name__c');
+            newInquiry.Last_Name__c = (String)inquiryData.get('Last_Name__c');
+            newInquiry.Email__c = (String)inquiryData.get('Email__c');
+            newInquiry.Phone__c = (String)inquiryData.get('Phone__c');
+            newInquiry.Course__c = (String)inquiryData.get('Course__c');
+            newInquiry.College__c = (String)inquiryData.get('College__c');
+            insert newInquiry;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error creating inquiry lead: ' + e.getMessage());
+        }
+    }
+
+    
 }
 
 
