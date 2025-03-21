@@ -1,0 +1,54 @@
+<template>
+    <lightning-card >
+        
+        <div class="slds-m-around_medium">
+            <!-- Welcome Title Section -->
+            <div class="section_title_all text-center">
+                <h3 class="font-weight-bold">Welcome To <span class="text-custom">Our Enrollment Process</span></h3>
+                <p class="section_subtitle mx-auto text-muted">
+                    We're excited to have you join our community! Get a detailed guide to the student enrollment process at our website. Follow each step carefully to complete your enrollment.
+                </p>
+            </div>
+
+            <!-- About and Image Section -->
+  
+        
+                    <!-- Content Section with Image Grid and Text -->
+                    <div class="row vertical_content_manage mt-5">
+                        <div class="col-lg-6">
+                            <div class="about_header_main mt-3">
+                                <div class="about_icon_box">
+                                    <!-- <p class="text_custom font-weight-bold">Student Enrollment Process</p> -->
+                                </div>
+                                <h4 class="about_heading text-capitalize font-weight-bold mt-4">Step-by-step Enrollment Process</h4>
+                                <p class="text-muted mt-3">
+                                    Follow these steps to complete your enrollment. Our detailed guide will walk you through every part of the process to make it smooth and easy.
+                                </p>
+                                <p class="text-muted mt-3">
+                                    Our enrollment process is designed to be clear, simple, and student-friendly. Our team is committed to helping you every step of the way, ensuring that you start your educational journey with confidence. Whether you're applying for undergraduate or graduate programs, we offer personalized support to help you succeed.                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="img_about mt-3">
+                                <img src="https://i.ibb.co/qpz1hvM/About-us.jpg" alt="Enrollment Process" class="img-fluid mx-auto d-block">
+                            </div>
+                        </div>
+                    </div>
+          
+            
+
+            <!-- Steps Section with Grid Layout -->
+            <div class="steps-container">
+                <template for:each={steps} for:item="step">
+                    <div key={step.id} class="step-box">
+                        <div class="icon-container">
+                            <lightning-icon icon-name={step.icon} size="large" class="step-icon"></lightning-icon>
+                        </div>
+                        <h5 class="step-title">{step.title}</h5>
+                        <p class="step-description">{step.description}</p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

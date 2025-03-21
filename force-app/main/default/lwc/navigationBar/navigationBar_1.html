@@ -1,0 +1,106 @@
+
+
+    <!-- <header>
+        <div class="brand">
+            <h1>Student Enrollment Process</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+              
+                <li><a href="/contact-details">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="login"><a href="/student-login">Login</a></li>
+                
+            </ul>
+        </nav>
+        <div class="hamburger-menu" onclick={toggleMobileMenu}>
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <ul class="mobile-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course-data">Course Data</a></li>
+                <li><a href="/contact-page">Contact</a></li>
+                <li><a href="About">About</a></li>
+                <li class="login"><a href="Login">Login</a></li>
+                <li class="signup"><a href="Sign up">Sign Up</a></li>
+            </ul>
+        </div>
+    </header> -->
+    <!-- <header>
+    <div class="outer-container">
+        <div class="topnav">
+
+            <div class="brand">
+                <a href="#">Student Enrollment</a>
+            </div>
+            
+            
+            <div class={menuClass}>
+                <a href="/about">About</a>
+                <a href="/faculty-details">Faculty Details</a>
+            </div>
+
+           
+            <a class="icon icon-menu" onclick={handleHamburgerClicked}>
+            </a>
+        </div>
+    </div>
+</header> -->
+
+
+
+
+<!-- <template>    
+    
+    <div class="outer-container">
+        <div class="topnav">
+            <div class="brand">
+                <h1>Student Enrollment</h1>
+            </div>
+
+            <div class={menuClass}>
+                <a href="/">Home</a>
+                <a href="/contact-details">Contact</a>
+                <a href="/about">About</a>
+                <a href="/student-login">Login</a>
+        
+            </div>
+
+            <a class={iconClass} onclick={handleHamburgerClicked}>
+                <input type="checkbox" role="button" aria-label="Display the menu" class="menu">
+
+            </a>
+        </div>
+    </div>
+
+
+</template> -->
+
+
+
+
+
+
+
+<template>
+    <div class="outer-container">
+        <div class="topnav">
+            <div class="brand">
+                <h1>Student Enrollment</h1>
+            </div>
+
+            <div class={menuClass}>
+                <a href="#" data-page="Home" onclick={handleNavigation}>Home</a>
+                <a href="#" data-page="Contact" onclick={handleNavigation}>Contact</a>
+                <a href="#" data-page="About" onclick={handleNavigation}>About</a>
+                <a href="#" data-page="StudentLogin" onclick={handleNavigation}>Login</a>
+            </div>
+
+            <a class={iconClass} onclick={handleHamburgerClicked}>
+                <input type="checkbox" role="button" aria-label="Display the menu" class="menu">
+            </a>
+        </div>
+    </div>
+</template>

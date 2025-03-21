@@ -1,0 +1,38 @@
+<template>
+    <!-- <header>
+        <div class="brand">
+            <h1>Student Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Profile</a></li>
+                <li><a href="#" onclick={handleLogout}>Logout</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <header>
+        <div class="brand">
+            <h1>Student Enrollment Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <!-- <li><lightning-button class="cs"  label="Button"></lightning-button></li> -->
+                <li><a href="/home-student-login">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/faculty-details">Academics</a></li>
+                <li><a href="/about">About</a></li>
+                <!-- <li><a href="/contact-page">Contact</a></li> -->
+                <!-- <li class="logout"><a href="#" onclick={openModel}>Logout</a></li> -->
+                <li class="logout">
+                    <a href="#" onclick={openModel}>
+                        <lightning-icon icon-name="utility:logout" size="small" alternative-text="Logout" class="logout-icon"></lightning-icon>
+                    </a>
+                </li>
+                
+                <c-inquiry-button message="Are you sure you want to proceed?" onconfirm={handleLogout}
+                oncancel={handleCancel}></c-inquiry-button>
+            </ul>
+        </nav>
+        </header>
+</template>

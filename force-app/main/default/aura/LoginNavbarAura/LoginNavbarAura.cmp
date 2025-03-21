@@ -1,0 +1,22 @@
+<aura:component>
+    <!-- Navigation Links for Logged-in Users -->
+    <ul>
+        <li><a href="/home-student-login">Home</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/faculty-details">Academics</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="logout">
+            <a href="javascript:void(0);" onclick="{!c.openModel}">
+                <lightning:icon iconName="utility:logout" size="small" alternativeText="Logout" class="logout-icon"/>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Include the CustomInquiryButton LWC component -->
+    <c:CustomInquiryButton 
+        aura:id="customInquiryButton"
+        message="Are you sure you want to proceed?" 
+        onconfirm="{!c.handleLogout}" 
+        oncancel="{!c.handleCancel}">
+    </c:CustomInquiryButton>
+</aura:component>

@@ -1,0 +1,317 @@
+/* Styling for the overall card container */
+.slds-m-around_medium {
+    margin: 2rem;
+}
+
+/* Title and subtitle styling */
+.section_title_all {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section_title_all h3 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #2c3145;
+}
+
+.section_title_all span.text-custom {
+    color: #00bd2a;
+}
+
+.section_subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Container for the content left and right (image grid and text) */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Styling for the content left (image grid section) */
+.contentLeft {
+    flex: 1 1 50%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.contentLeft .imgWrapper {
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    position: relative;
+}
+
+.contentLeft .imgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.contentLeft .imgWrapper:hover img {
+    transform: scale(1.1);
+}
+
+/* Styling for the content right (text section) */
+.contentRight {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contentRight .content {
+    padding-left: 20px;
+}
+
+.contentRight .content h4 {
+    font-size: 1.5rem;
+    color: #d35400;
+}
+
+.contentRight .content h2 {
+    font-size: 2.5rem;
+    color: #2c3145;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.contentRight .content p {
+    font-size: 1rem;
+    color: #343434;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.contentRight .content a {
+    font-size: 1rem;
+    padding: 12px 25px;
+    background-color: #d35400;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.contentRight .content a:hover {
+    background-color: #c0392b;
+}
+
+/* Step section styling */
+.steps-container {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);  /* 4 cards per row */
+    
+    flex-wrap: wrap;
+    grid-gap: 20px;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.step-box {
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.step-box:hover {
+    transform: translateY(-10px);
+}
+
+.step-icon {
+    margin-bottom: 10px;
+    color: #c5894a;
+}
+
+.step-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2c3145;
+    margin-bottom: 10px;
+}
+
+.step-description {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .contentLeft {
+        grid-template-columns: 1fr 1fr;
+        margin-right: 0;
+    }
+
+    .contentLeft .imgWrapper {
+        height: 200px;
+    }
+
+    .contentRight {
+        flex: 1 1 100%;
+        margin-top: 2rem;
+    }
+
+    .contentRight .content h2 {
+        font-size: 2rem;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step-box {
+        width: 90%;
+    }
+}
+
+
+/* General Styles */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3145;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.section_all {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+}
+
+/* Title Styles */
+.section_title_all {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section_title_all h3 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #2c3145;
+}
+
+.section_title_all span.text-custom {
+    color: #c5894a;
+}
+
+.section_subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* About Section (Left Side with Text) */
+.about_header_main {
+    margin-top: 20px;
+    margin-left: 68px;
+}
+
+.about_icon_box {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.text_custom {
+    color: #c5894a;
+    font-weight: bold;
+}
+
+.about_heading {
+    font-weight: bold;
+    color: #2c3145;
+    font-size: 2rem;
+}
+
+.text-muted {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Image Section (Right Side) */
+.img_about {
+    margin-top: 20px;
+}
+
+.img_about img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Layout for Image and Text Sections */
+.vertical_content_manage {
+    margin-top: 50px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-lg-6 {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .section_title_all h3 {
+        font-size: 2rem;
+    }
+
+    .section_subtitle {
+        font-size: 0.875rem;
+        padding: 0 20px;
+    }
+
+    .about_heading {
+        font-size: 1.5rem;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .col-lg-6 {
+        max-width: 100%;
+    }
+
+    .img_about img {
+        width: 100%;
+        height: auto;
+    }
+}

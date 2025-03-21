@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <!-- Define a boolean attribute for controlling menu visibility -->
+    <aura:attribute name="showMenu" type="Boolean" default="false" />
+
+    <!-- Define an attribute for user login status -->
+    <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
+
+    <!-- Define an attribute for storing dynamic navigation links -->
+    <aura:attribute name="navLinks" type="List" default="['Home', 'About Us', 'Contact Us']" />
+
+    <!-- Define an attribute to store the user profile if logged in -->
+    <aura:attribute name="userProfile" type="Object" default="{}" />
+
+    <!-- Navigation Links (Hidden initially, shown when menu opens) -->
+    <div class="{!v.showMenu ? 'nav-links show' : 'nav-links'}">
+        <a href="/s/landing">Home</a>
+        <a href="/s/about-us">About Us</a>
+        <a href="/s/contact-us">Contact Us</a>
+        
+        <!-- Conditional rendering for Login/Logout based on isLoggedIn -->
+        <a href="{!v.isLoggedIn ? '/s/logout' : '/s/login'}">{!v.isLoggedIn ? 'Logout' : 'Login'}</a>
+    </div>
+
+    <!-- Hamburger Icon (for mobile view) -->
+    <a class="{!v.showMenu ? 'icon-menu active' : 'icon-menu'}" onclick="{!c.handleHamburgerClicked}">
+        <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+    </a>
+</aura:component>

@@ -1,63 +1,108 @@
-// import { LightningElement } from 'lwc';
+import { LightningElement } from 'lwc';
 
-// export default class EmbeddedServiceBot extends LightningElement {
+export default class EmbeddedServiceChat extends LightningElement {
+    connectedCallback() {
+        // Check if the Embedded Service (esw.min.js) is loaded
+        if (!window.embedded_svc) {
+            // Dynamically load the Embedded Service script if it's not already loaded
+            this.loadScriptWithFetch();
+        } else {
+            // If the script is already loaded, initialize the service
+            this.initializeEmbeddedService();
+        }
+    }
 
-//         connectedCallback() {
-//             // Call to initialize the embedded service when the component is added to the page
-//             this.initializeEmbeddedService();
-//         }
-    
-//         initializeEmbeddedService() {
-//             const initESW = (gslbBaseURL) => {
-//                 // Configure the embedded service settings
-//                 embedded_svc.settings.displayHelpButton = true; // Show Help button (can be set to false)
-//                 embedded_svc.settings.language = 'en-US'; // Language setting, you can modify as needed (for example, 'en-US')
-    
-//                 // Set the features you want to enable in the embedded service (e.g., Live Agent)
-//                 embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-//                 embedded_svc.settings.entryFeature = 'LiveAgent';
-    
-//                 // Initialize the Embedded Service with all the required details
-//                 embedded_svc.init(
-//                     'https://kriittechnologies44-dev-ed.develop.my.site.com', // Replace with your Salesforce Community URL
-//                     'https://kriittechnologies44-dev-ed.develop.my.site.com/studentEnrollmentProcess', // Your actual Salesforce Community page URL
-//                     gslbBaseURL, // You can keep this null or specify it for specific routing
-//                     '00DdL00000JDyBm', // Replace with your Salesforce Organization ID
-//                     'Enrollment_Help', // Bot Deployment Name (replace with your Bot's name)
-//                     {
-//                         baseLiveAgentContentURL: 'https://c.la11-core1.sfdc-y37hzm.salesforceliveagent.com/content', // Live Agent content URL
-//                         deploymentId: '572dL00000C3GED', // Replace with your Deployment ID
-//                         buttonId: '573dL0000035QHt', // Replace with your Button ID
-//                         baseLiveAgentURL: 'https://d.la11-core1.sfdc-y37hzm.salesforceliveagent.com/chat', // Live Agent URL
-//                         eswLiveAgentDevName: 'Enrollment_Help', // Development name of your bot
-//                         isOfflineSupportEnabled: false // Set this to true if you want to support offline (leave false if not)
-//                     }
-//                 );
-//             };
-    
-//             // Ensure embedded_svc is loaded, if not, load it
-//             if (!window.embedded_svc) {
-//                 const script = document.createElement('script');
-//                 script.src = 'https://service.force.com/embeddedservice/5.0/esw.min.js';
-//                 script.onload = () => initESW(null);
-//                 document.body.appendChild(script);
-//             } else {
-//                 initESW('https://service.force.com'); // Initialize directly if the script is already loaded
-//             }
-//         }
-//     }
+    // Function to load the script using fetch with 'no-cors' mode
+    loadScriptWithFetch() {
+        fetch('https://service.force.com/embeddedservice/5.0/esw.min.js', {
+            method: 'GET', 
+            mode: 'no-cors' // Bypass CORS policy
+        })
+        .then(response => {
+            if (response.ok) {
+                // If fetch is successful, inject the script into the DOM
+                this.injectScript();
+            } else {
+                throw new Error('Failed to load script');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading script:', error);
+        });
+    }
+
+    // Function to inject the script into the DOM
+    injectScript() {
+        const script = document.createElement('script');
+        script.src = 'https://service.force.com/embeddedservice/5.0/esw.min.js';
+        script.onload = () => this.initializeEmbeddedService();
+        document.body.appendChild(script);
+    }
+
+    initializeEmbeddedService() {
+     console.log('Initializing Embedded Service...');
+     const initESW = (gslbBaseURL) => {
+         console.log('Embedded Service Initialized');
+         embedded_svc.settings.displayHelpButton = true;
+         embedded_svc.settings.language = 'en';
+ 
+         // More debugging logs here
+         console.log('Service settings:', embedded_svc.settings);
+ 
+         // Enable LiveAgent feature for the embedded service
+         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+         embedded_svc.settings.entryFeature = 'LiveAgent'; 
+ 
+         embedded_svc.init(
+             'https://kriittechnologies44-dev-ed.develop.my.salesforce.com',
+             'https://kriittechnologies44-dev-ed.develop.my.site.com/sep',
+             gslbBaseURL,
+             '00DdL00000JDyBm', 
+             'Enrollment_Help', 
+             {
+                 baseLiveAgentContentURL: 'https://c.la11-core1.sfdc-y37hzm.salesforceliveagent.com/content',
+                 deploymentId: '572dL00000C3GED', 
+                 buttonId: '573dL0000035QHt',
+                 baseLiveAgentURL: 'https://d.la11-core1.sfdc-y37hzm.salesforceliveagent.com/chat',
+                 eswLiveAgentDevName: 'Enrollment_Help',
+                 isOfflineSupportEnabled: false 
+             }
+         );
+     };
+ 
+     // Logging for script loading
+     if (!window.embedded_svc) {
+         console.log('Loading Embedded Service script...');
+         const script = document.createElement('script');
+         script.src = 'https://kriittechnologies44-dev-ed.develop.my.salesforce.com/embeddedservice/5.0/esw.min.js';
+         script.onload = () => {
+             console.log('Embedded Service script loaded successfully');
+             initESW(null);
+         };
+         script.onerror = (error) => {
+             console.error('Error loading the Embedded Service script:', error);
+         };
+         document.body.appendChild(script);
+     } else {
+         initESW('https://service.force.com');
+     }
+ }
+ 
+}
+
+
     
 
 // einsteinBotEmbed.js (LWC JavaScript)
-import { LightningElement } from 'lwc';
+// import { LightningElement } from 'lwc';
 
-export default class EinsteinBotEmbed extends LightningElement {
+// export default class EinsteinBotEmbed extends LightningElement {
 
 
-     // Set the URL of the Visualforce page
-     vfPageUrl = '/apex/Embedded_Chat_Bot';
+//      // Set the URL of the Visualforce page
+//      vfPageUrl = '/apex/EmbeddedBotForSEP';
 
-}
+// }
 //     connectedCallback() {
 
 

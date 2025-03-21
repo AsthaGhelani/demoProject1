@@ -1,0 +1,12 @@
+<aura:component>
+    <aura:attribute name="message" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.isVisible}">
+        <div class="modal">
+            <p>{!v.message}</p>
+            <button onclick="{!c.confirmAction}">Yes</button>
+            <button onclick="{!c.cancelAction}">No</button>
+        </div>
+    </aura:if>
+</aura:component>

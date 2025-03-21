@@ -1,0 +1,4 @@
+<aura:component>
+    <aura:dependency resource="force:slds" type="APPLICATION" />
+    <c:EmbeddedServiceChat />
+</aura:component>

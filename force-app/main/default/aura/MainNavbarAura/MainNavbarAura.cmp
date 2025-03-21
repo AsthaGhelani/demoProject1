@@ -1,0 +1,16 @@
+<aura:component>
+    <aura:attribute name="showMenu" type="Boolean" default="false" />
+
+    <!-- Navigation Links (Hidden initially, shown when menu opens) -->
+    <div class="{!v.showMenu ? 'nav-links show' : 'nav-links'}">
+        <a href="/">Home</a>
+        <a href="/contact-details">Contact</a>
+        <a href="/about">About</a>
+        <a href="/student-login">Login</a>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <a class="{!v.showMenu ? 'icon-menu active' : 'icon-menu'}" onclick="{!c.handleHamburgerClicked}">
+        <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+    </a>
+</aura:component>

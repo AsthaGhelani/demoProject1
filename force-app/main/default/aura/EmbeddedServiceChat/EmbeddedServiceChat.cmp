@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <!-- Use Salesforce CDN version -->
+    <ltng:require scripts="https://service.force.com/embeddedservice/5.0/esw.min.js" afterScriptsLoaded="{!c.initChat}" />
+
+    <div id="embedded-service-chat"></div>
+    <lightning:button label="Chat with Support" onclick="{!c.handleChat}"/>
+
+</aura:component>
